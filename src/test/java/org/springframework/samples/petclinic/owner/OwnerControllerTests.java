@@ -16,6 +16,7 @@
 
 package org.springframework.samples.petclinic.owner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -42,6 +43,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -81,6 +83,15 @@ class OwnerControllerTests {
 		max.setId(1);
 		return george;
 	};
+
+	@Autowired
+	ApplicationContext applicationContext;
+
+	@Test
+	public void getBean() {
+		OwnerController bean = applicationContext.getBean(OwnerController.class);
+		assertThat(bean).isNotNull();
+	}
 
 	@BeforeEach
 	void setup() {

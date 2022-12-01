@@ -18,6 +18,8 @@ package org.springframework.samples.petclinic.owner;
 import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
+
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,12 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -46,8 +43,18 @@ class OwnerController {
 
 	private final OwnerRepository owners;
 
-	public OwnerController(OwnerRepository clinicService) {
+	private final ApplicationContext applicationContext;
+
+	public OwnerController(OwnerRepository clinicService, ApplicationContext applicationContext) {
 		this.owners = clinicService;
+		this.applicationContext = applicationContext;
+	}
+
+	@GetMapping("/bean")
+	@ResponseBody
+	public String bean() {
+		return "bean: " + applicationContext.getBean(OwnerRepository.class) + "\n"
+			+ "owners: " + this.owners;
 	}
 
 	@InitBinder
