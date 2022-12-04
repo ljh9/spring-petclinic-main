@@ -26,6 +26,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StopWatch;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -90,9 +91,17 @@ class OwnerController {
 
 	@GetMapping("/owners/new")
 	public String initCreationForm(Map<String, Object> model) {
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
+
 		Owner owner = new Owner();
 		model.put("owner", owner);
+
+		stopWatch.stop();
+		System.out.println(stopWatch.prettyPrint());
+
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+
 	}
 
 	@PostMapping("/owners/new")
