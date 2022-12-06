@@ -90,6 +90,7 @@ class OwnerController {
 	}
 
 	@GetMapping("/owners/new")
+	@LogExecutionTime
 	public String initCreationForm(Map<String, Object> model) {
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
