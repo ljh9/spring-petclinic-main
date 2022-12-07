@@ -30,7 +30,7 @@ import org.springframework.util.StopWatch;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Juergen Hoeller
@@ -52,10 +52,10 @@ class OwnerController {
 	private PetRepository petRepository;
 //	private final PetRepository petRepository;
 
-	@Autowired
-	public void setPetRepository(PetRepository petRepository) {
-		this.petRepository = petRepository;
-	}
+//	@Autowired
+//	public void setPetRepository(PetRepository petRepository) {
+//		this.petRepository = petRepository;
+//	}
 
 	public OwnerController(OwnerRepository clinicService
 //		, PetRepository petRepository
@@ -187,12 +187,12 @@ class OwnerController {
 	 * @param ownerId the ID of the owner to display
 	 * @return a ModelMap with the model attributes for the view
 	 */
-	@GetMapping("/owners/{ownerId}")
-	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
-		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-		Owner owner = this.owners.findById(ownerId);
-		mav.addObject(owner);
-		return mav;
-	}
+//	@GetMapping("/owners/{ownerId}")
+//	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
+//		ModelAndView mav = new ModelAndView("owners/ownerDetails");
+//		Owner owner = this.owners.findById(ownerId);
+//		mav.addObject(owner);
+//		return mav;
+//	}
 
 }
