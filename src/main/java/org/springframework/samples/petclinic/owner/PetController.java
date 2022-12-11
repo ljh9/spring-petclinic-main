@@ -17,6 +17,8 @@ package org.springframework.samples.petclinic.owner;
 
 import java.util.Collection;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -40,9 +42,18 @@ class PetController {
 
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
+//	private PetRepository pets;
+
+	@Autowired
+	private final PetRepository pets;
 	private final OwnerRepository owners;
 
-	public PetController(OwnerRepository owners) {
+//	public void setPets(PetRepository pets) {
+//		this.pets = pets;
+//	}
+
+	public PetController(PetRepository pets, OwnerRepository owners) {
+		this.pets = pets;
 		this.owners = owners;
 	}
 
