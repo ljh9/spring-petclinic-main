@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.owner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.samples.petclinic.aspect.LogExecutionTime;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ public class SampleController {
 	@Autowired
 	String testBean;
 
+	@LogExecutionTime
 	@GetMapping("/context")
 	public String context() {
 		return "hello " + testBean;

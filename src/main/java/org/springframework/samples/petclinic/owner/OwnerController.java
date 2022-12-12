@@ -115,6 +115,7 @@ class OwnerController {
 		return "redirect:/owners/" + owner.getId();
 	}
 
+	@org.springframework.samples.petclinic.aspect.LogExecutionTime
 	@GetMapping("/owners/find")
 	public String initFindForm(Map<String, Object> model) {
 		model.put("owner", new Owner());
